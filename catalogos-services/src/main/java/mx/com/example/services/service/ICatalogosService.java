@@ -9,4 +9,6 @@ public interface ICatalogosService {
 
 
     List<UserDO> getAllUsers();
+
+    List<UserDO> getPageableUsers(int page, int size);
 }

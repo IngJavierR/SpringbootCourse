@@ -8,4 +8,6 @@ public interface ICatalogosFacade {
 
 
     List<UserTO> getAllUsers();
+
+    List<UserTO> getAllPageableUsers(int page, int size);
 }

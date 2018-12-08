@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,5 +27,10 @@ public class CatalogosServiceImpl implements ICatalogosService {
     @Override
     public List<UserDO> getAllUsers() {
         return (List<UserDO>) userDAO.findAll();
+    }
+
+    @Override
+    public List<UserDO> getPageableUsers(int page, int size) {
+        return userDAO.findAll(PageRequest.of(page, size)).getContent();
     }
 }

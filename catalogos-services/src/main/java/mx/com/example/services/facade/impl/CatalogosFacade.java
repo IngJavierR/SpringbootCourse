@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class CatalogosFacade implements ICatalogosFacade {
@@ -27,5 +28,19 @@ public class CatalogosFacade implements ICatalogosFacade {
         List<UserDO> userList = catalogosService.getAllUsers();
         Type userDOType = new TypeToken<List<UserDO>>() {}.getType();
         return  modelMapper.map(userList, userDOType);
+    }
+
+    @Override
+    public List<UserTO> getAllPageableUsers(int page, int size) {
+        List<UserDO> usersDO = catalogosService.getPageableUsers(page, size);
+
+        return usersDO.stream().map(x -> {
+           UserTO userTO = new UserTO();
+           userTO.setAge(x.getAge());
+           userTO.setLastName(x.getLastName());
+           userTO.setName(x.getName());
+           userTO.setId(x.getId());
+           return userTO;
+        }).collect(Collectors.toList());
     }
 }

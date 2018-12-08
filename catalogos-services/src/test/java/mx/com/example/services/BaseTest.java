@@ -1,5 +1,6 @@
 package mx.com.example.services;
 
+import mx.com.example.services.facade.ICatalogosFacade;
 import mx.com.example.services.service.ICatalogosService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,8 @@ public abstract class BaseTest {
 
     @Autowired
     public ICatalogosService catalogosService;
+
+    @Autowired
+    public ICatalogosFacade catalogosFacade;
 
 }

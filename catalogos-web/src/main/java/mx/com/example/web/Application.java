@@ -13,8 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
 
-@EnableEurekaClient
-@EnableDiscoveryClient
+//@EnableEurekaClient
+//@EnableDiscoveryClient
 @SpringBootApplication
 @ComponentScan("mx.com.example")
 @EnableJpaRepositories("mx.com.example.persistence")

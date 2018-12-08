@@ -25,9 +25,17 @@ public class HelloController {
     //@Autowired
     //RestTemplate restTemplate;
 
+    @Autowired
+    public ICatalogosFacade catalogosFacade;
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity getUsers() {
+        List<UserTO> users = catalogosFacade.getAllUsers();
+        return new ResponseEntity(users, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity test() {
-        LOG.info("Se invoca /test");
         return new ResponseEntity<>("Prueba Ok", HttpStatus.OK);
     }
 }

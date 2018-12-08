@@ -7,5 +7,5 @@ import java.util.List;
 public interface ICatalogosFacade {
 
 
-
+    List<UserTO> getAllUsers();
 }

@@ -10,5 +10,7 @@ public interface ICatalogosService {
 
     List<UserDO> getAllUsers();
 
-    List<UserDO> getPageableUsers(int page, int size);
+    List<UserDO> getPageableUsers(int page, int size, String property, String direction);
+
+    void saveUser(UserDO user);
 }

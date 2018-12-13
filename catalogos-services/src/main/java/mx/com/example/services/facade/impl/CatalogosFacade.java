@@ -31,8 +31,8 @@ public class CatalogosFacade implements ICatalogosFacade {
     }
 
     @Override
-    public List<UserTO> getAllPageableUsers(int page, int size) {
-        List<UserDO> usersDO = catalogosService.getPageableUsers(page, size);
+    public List<UserTO> getAllPageableUsers(int page, int size, String property, String direction) {
+        List<UserDO> usersDO = catalogosService.getPageableUsers(page, size, property, direction);
 
         return usersDO.stream().map(x -> {
            UserTO userTO = new UserTO();
@@ -42,5 +42,11 @@ public class CatalogosFacade implements ICatalogosFacade {
            userTO.setId(x.getId());
            return userTO;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void saveUser(UserTO user) {
+        UserDO userDO = modelMapper.map(user, UserDO.class);
+        catalogosService.saveUser(userDO);
     }
 }

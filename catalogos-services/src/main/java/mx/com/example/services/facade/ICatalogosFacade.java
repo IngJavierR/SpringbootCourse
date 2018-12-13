@@ -9,5 +9,7 @@ public interface ICatalogosFacade {
 
     List<UserTO> getAllUsers();
 
-    List<UserTO> getAllPageableUsers(int page, int size);
+    List<UserTO> getAllPageableUsers(int page, int size, String property, String direction);
+
+    void saveUser(UserTO user);
 }

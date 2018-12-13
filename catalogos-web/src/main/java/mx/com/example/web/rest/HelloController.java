@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true")
 @RestController
@@ -28,9 +29,15 @@ public class HelloController {
     public ICatalogosFacade catalogosFacade;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity getUsers(@RequestParam("page") int page,
-                                   @RequestParam("size") int size) {
-        List<UserTO> users = catalogosFacade.getAllPageableUsers(page, size);
+    public ResponseEntity getUsers(@RequestParam(value = "page", defaultValue = "0", required = false) int page,
+                                   @RequestParam(value = "size", defaultValue = "10", required = false) int size,
+                                   @RequestParam(value = "property", required = false) String property,
+                                   @RequestParam(value = "direction", required = false) String direction) {
+
+        property = Optional.ofNullable(property).orElse("id");
+        direction = Optional.ofNullable(direction).orElse("asc");
+
+        List<UserTO> users = catalogosFacade.getAllPageableUsers(page, size, property, direction);
         return new ResponseEntity(users, HttpStatus.OK);
     }
 
@@ -52,6 +59,12 @@ public class HelloController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/user", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity saveUser(@RequestBody UserTO user)
+    {
+        catalogosFacade.saveUser(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity test() {

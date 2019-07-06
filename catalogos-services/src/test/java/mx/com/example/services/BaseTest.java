@@ -27,4 +27,7 @@ public abstract class BaseTest {
 
     @Autowired
     public ICatalogosFacade catalogosFacade;
+
+    @Autowired
+    public IUsersService usersService;
 }

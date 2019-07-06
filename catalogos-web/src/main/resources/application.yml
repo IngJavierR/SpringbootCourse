@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/dbcourse
     username: postgres
-    password: project123
+    password: cursoMicro2019
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
@@ -17,7 +17,7 @@ server:
 
 eureka:
   client:
-    register-with-eureka: true
+    register-with-eureka: false
     fetch-registry: false
     service-url:
       defaultZone: http://localhost:8000/eureka

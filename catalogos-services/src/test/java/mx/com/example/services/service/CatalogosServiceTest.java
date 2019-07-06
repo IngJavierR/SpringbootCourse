@@ -1,6 +1,7 @@
 package mx.com.example.services.service;
 
 import mx.com.example.model.UserDO;
+import mx.com.example.persistence.UserDAO;
 import mx.com.example.services.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,6 +20,9 @@ public class CatalogosServiceTest extends BaseTest {
 
     @Test
     public void shouldReturnEmptyUsers() {
+
+        UserDO userDO = new UserDO("", "", 0);
+        entityManager.persist(userDO);
 
         List<UserDO> usersIni = catalogosService.getAllUsers();
         entityManager.remove(usersIni.stream().findFirst().get());
